@@ -853,14 +853,17 @@ class Window2(tk.Tk):
             with open("name and password.txt","w") as w:
                 w.close()
     def show(self):
-        fileopen = list(line.strip() for line in open('name and password.txt'))
-        if self.check2.get() == 1:
-            self.entry1.insert(0,fileopen[0])
-            self.entry2.insert(0,fileopen[1])
-        elif self.check2.get() == 0:
-            self.entry1.delete(0,"end")
-            self.entry2.delete(0,"end")
+        try:
+            fileopen = list(line.strip() for line in open('name and password.txt'))
+            if self.check2.get() == 1:
+                self.entry1.insert(0,fileopen[0])
+                self.entry2.insert(0,fileopen[1])
+            elif self.check2.get() == 0:
+                self.entry1.delete(0,"end")
+                self.entry2.delete(0,"end")
+        except FileNotFoundError:
             pass
+            
 
 
     def show_entry(self):
